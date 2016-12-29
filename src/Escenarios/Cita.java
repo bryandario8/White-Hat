@@ -82,7 +82,7 @@ public class Cita {
 
     }
 
-    public void menuCitas() {
+    private void menuCitas() {
         this.citaActual = new Button("Cita actual");
         this.crearCita = new Button("Crear cita");
         backPrincipal = new Button("Back");
@@ -95,7 +95,7 @@ public class Cita {
 
     }
 
-    public void citaactual() {
+    private void citaactual() {
         back1 = new Button("Back");
         contenedora3 = new VBox();
         contenedora4 = new VBox();
@@ -109,7 +109,7 @@ public class Cita {
         Label texthora1 = new Label("Hora: ");
         Label textpaciente1 = new Label("Paciente: ");
         rece = new VBox();
-        Label titulo2 = new Label("Tratamiento");
+        Label titulo2 = new Label("Receta");
         TextArea ta_receta = new TextArea("");
         ta_receta.setMinHeight(200);
         rece.getChildren().addAll(titulo2, ta_receta);
@@ -142,7 +142,7 @@ public class Cita {
         contenedora3.setAlignment(Pos.TOP_LEFT);
     }
 
-    public void crearCita() {
+    private void crearCita() {
         hbox_search = new HBox();
         temp_1 = new VBox();
         back = new Button("back");
@@ -242,7 +242,7 @@ public class Cita {
         this.state = state;
     }
 
-    public void metOnClick() {
+    private void metOnClick() {
         search.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -254,10 +254,10 @@ public class Cita {
         }
         );
         backPrincipal.setOnAction(new EventHandler<ActionEvent>() {
-            Boolean state = this.state;
+            //Boolean stateN = state;
             @Override
             public void handle(ActionEvent t) {
-                this.state = false;
+                state = false;
             }
         });
         back.setOnAction(new EventHandler<ActionEvent>() {
@@ -273,7 +273,7 @@ public class Cita {
             @Override
             public void handle(ActionEvent t) {
             rootPane.getChildren().clear();
-            rootPane.setCenter(botones1);
+            rootPane.setTop(botones1);
             }
         });
         crearCita.setOnAction(new EventHandler<ActionEvent>() {

@@ -50,7 +50,7 @@ public class SceneOrganizer {
         return scene;
     }
 
-    public void setupTimeline() {
+    private void setupTimeline() {
         KeyFrame kf = new KeyFrame(Duration.millis(100), new changWindow());
         timeline = new Timeline(kf);
         timeline.setCycleCount(Animation.INDEFINITE);

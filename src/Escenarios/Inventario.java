@@ -190,7 +190,7 @@ public class Inventario {
 
             @Override
             public void handle(ActionEvent t) {
-            state = false;
+                state = false;
             }
         });
         this.agregarImagen.setOnAction(new EventHandler<ActionEvent>() {
