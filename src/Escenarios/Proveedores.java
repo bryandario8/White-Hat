@@ -55,7 +55,7 @@ public class Proveedores {
     Button saveee;
     HBox temp1;
     Button edit;
-    Button errase;
+    Button delete;
 
     public Proveedores() {
         rootPane = new BorderPane();
@@ -136,9 +136,9 @@ public class Proveedores {
 
     public void llenarContenedor() {
         edit = new Button("Edit");
-        errase = new Button("Errase");
+        delete = new Button("Delete");
         HBox temp2=new HBox();
-        temp2.getChildren().addAll(edit,errase);
+        temp2.getChildren().addAll(edit,delete);
         Label ruc = new Label("Ruc: ");
         Label contruc = new Label("");
         HBox conte1 = new HBox();

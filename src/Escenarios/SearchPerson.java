@@ -60,8 +60,8 @@ public class SearchPerson {
     Button agregarImagen;
     Button saveee;
     HBox temp1;
-     Button edit;
-    Button errase;
+    Button edit;
+    Button delete;
 
     public SearchPerson(Stage stage) {
         rootPane = new BorderPane();
@@ -156,9 +156,9 @@ public class SearchPerson {
 
     public void llenarContenedor() {
         edit = new Button("Edit");
-        errase = new Button("Errase");
+        delete = new Button("Delete");
         HBox temp2=new HBox();
-        temp2.getChildren().addAll(edit,errase);
+        temp2.getChildren().addAll(edit,delete);
         Label cedula = new Label("Cedula: ");
         Label contCedula = new Label("");
         HBox conte1 = new HBox();
