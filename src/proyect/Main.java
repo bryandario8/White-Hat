@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  *
  * @author Flores
  */
-public class Proyect extends Application {
+public class Main extends Application {
     
     SceneOrganizer organizer;
     @Override

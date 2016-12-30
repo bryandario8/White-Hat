@@ -6,9 +6,11 @@
 package Escenarios;
 
 import Constantes.Settings;
+import java.lang.reflect.Method;
 import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -19,10 +21,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 /**
@@ -32,45 +31,49 @@ import javafx.stage.Stage;
 public class Cita {
 
     Date fecha = new Date();
-    BorderPane rootPane;
-    Boolean state = true;
+    BorderPane rootPane;  //*
+    Boolean state = true;  //*
     VBox lista;
     Label textnombre;
     TextField tf_nombre;
     Label textclave;
     TextField tf_clave;
-    Button search;
-    Button back;
-    Button back1;
-    Button backPrincipal;
+    Button search;  // *
+    Button back;   //*
+    Button back1;  //*
+    Button backPrincipal;  // *
     HBox hbox_search;
     HBox hbox_clave;
     Stage st;
     Label mensaje;
     HBox info;
-    Pane pane;
+    GridPane grid;
     Image imagen = new Image("file:plo.png");
     ImageView imagenview = new ImageView(imagen);
-    VBox datos = new VBox();
+    VBox datos = new VBox();  //*
     VBox datosNuevo = new VBox();
-    ScrollPane sc = new ScrollPane();
-    VBox conteImagen = new VBox();
-    HBox botones1;
-    Button citaActual;
-    Button crearCita;
-    VBox temp_1;
-    VBox contenedora;
-    VBox contenedora3;
-    VBox contenedora4;
-    HBox contenedora2;
-    VBox rece;
-    VBox deta;
-    VBox exa;
-    Button detalles;
-    Button receta;
-    Button examen;
-    Button consentimiento;
-    Button realizada;
+    ScrollPane sc = new ScrollPane();  //*
+    VBox conteImagen = new VBox();  //*
+    HBox botones1;  //*
+    Button citaActual;  //*
+    Button crearCita;  //*
+    TextField tf_fecha;
+    TextField tf_hora;
+    VBox temp_1;  //*
+    VBox contenedora;  //*
+    VBox contenedora3;  //*
+    VBox contenedora4; 
+    HBox contenedora2;  //*
+    VBox rece;  //*
+    VBox deta;  //*
+    VBox exa;  //*
+    Button detalles;  //*
+    Button receta;  //*
+    Button examen;  //*
+    Button consentimiento; //*
+    Button realizada;   //* pendiente
+    Button confirmar;
+    int filas;
 
     public Cita() {
         rootPane = new BorderPane();
@@ -143,6 +146,7 @@ public class Cita {
     }
 
     private void crearCita() {
+        Pane pane;
         hbox_search = new HBox();
         temp_1 = new VBox();
         back = new Button("back");
@@ -165,20 +169,34 @@ public class Cita {
         sepa.setOrientation(Orientation.VERTICAL);
         Label titulo_1 = new Label("Seleccione un paciente y fecha de la cita");
         Label fecha = new Label("Fecha(dd/mm/yyyy): ");
-        TextField tf_fecha = new TextField("");
+        tf_fecha = new TextField("");
         HBox conte1 = new HBox();
-        Button confirmar = new Button("Confirmar");
+        confirmar = new Button("Confirmar");
         Label hora = new Label("Hora(hh:mm): ");
-        TextField tf_hora = new TextField("");
+        tf_hora = new TextField("");
         conte1.getChildren().addAll(fecha, tf_fecha, hora, tf_hora, confirmar);
         llenarContenedor();
         contenedora.getChildren().addAll(titulo_1, conte1, this.mensaje, sc, sepa, conteImagen);
         contenedora.setAlignment(Pos.CENTER);
 
         tf_nombre.setMinWidth(Settings.SCENE_WIDTH - 80);
+        
+        
     }
 
     public void llenarContenedor() {
+        grid = new GridPane();
+        grid.setPadding(new Insets(10,10,10,10));
+        grid.setVgap(8);
+        grid.setHgap(10);
+        grid.add(new Label("N. "), 0, 0);
+        grid.add(new Label("Fecha"), 1, 0);
+        grid.add(new Label("Hora"), 2, 0);
+        grid.add(new Label("Cedula"), 3, 0);
+        grid.add(new Label("Nombre"), 4, 0);
+        //grid.add(new Button("Confirmar"), 5, 0);
+        filas=0;
+        
         Label cedula = new Label("Cedula: ");
         Label contCedula = new Label("");
         HBox conte1 = new HBox();
@@ -214,16 +232,18 @@ public class Cita {
         datos.getChildren().addAll(conte1, conte2, conte3, conte4, conte5, conte6, conte7, conte8);
         datos.setAlignment(Pos.CENTER);
         datos.setSpacing(100);
-        sc.setContent(datos);
+        sc.setContent(grid);
         sc.setMinWidth(Settings.SCENE_WIDTH / 2);
         VBox contenedora2 = new VBox();
-        Label textcita = new Label("Cita hecha ");
+        Label textcita = new Label("Proxima Cita ");
         Label textdia = new Label("Dia: ");
         Label texthora = new Label("Hora: ");
         Label textpaciente = new Label("Paciente: ");
         contenedora2.getChildren().addAll(textcita, textdia, texthora, textpaciente);
         conteImagen.getChildren().addAll(contenedora2);
         conteImagen.setAlignment(Pos.CENTER);
+        
+        
     }
 
     public BorderPane getRootPane() {
@@ -247,7 +267,7 @@ public class Cita {
 
             @Override
             public void handle(ActionEvent t) {
-                sc.setContent(datos);
+                //sc.setContent(datos);
                 sc.setMinWidth(Settings.SCENE_WIDTH / 2);
                 conteImagen.setAlignment(Pos.CENTER);
             }
@@ -317,6 +337,23 @@ public class Cita {
              contenedora3.getChildren().clear();
             contenedora3.getChildren().addAll(contenedora2, new Separator(),exa,realizada);
             }
+        });
+        confirmar.setOnAction(new EventHandler<ActionEvent>(){
+            
+            @Override
+            public void handle(ActionEvent t) {
+                if(!"".equals(tf_fecha.getText()) && !"".equals(tf_hora.getText())){
+                    filas++;
+                    grid.add(new Label("1. "), 0, filas);
+                    grid.add(new Label(tf_fecha.getText()), 1, filas);
+                    grid.add(new Label(tf_fecha.getText()), 2, filas);
+                    grid.add(new TextField(""), 3, filas);
+                    grid.add(new TextField(""), 4, filas);
+                    grid.add(new Button("Confirmar"), 5, filas);
+                    grid.add(new Button("Eliminar"), 6, filas);
+                }
+            }
+            
         });
         consentimiento.setOnAction(new EventHandler<ActionEvent>() {
 
