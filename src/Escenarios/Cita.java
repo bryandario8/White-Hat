@@ -6,19 +6,16 @@
 package Escenarios;
 
 import Constantes.Settings;
-import java.lang.reflect.Method;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -57,8 +54,9 @@ public class Cita {
     HBox botones1;  //*
     Button citaActual;  //*
     Button crearCita;  //*
-    TextField tf_fecha;
-    TextField tf_hora;
+    DatePicker tf_fecha;
+    LocalDate fechaElegida;
+    ComboBox tf_hora;
     VBox temp_1;  //*
     VBox contenedora;  //*
     VBox contenedora3;  //*
@@ -72,7 +70,7 @@ public class Cita {
     Button examen;  //*
     Button consentimiento; //*
     Button realizada;   //* pendiente
-    Button confirmar;
+    Button agregar;
     int filas;
 
     public Cita() {
@@ -169,21 +167,34 @@ public class Cita {
         sepa.setOrientation(Orientation.VERTICAL);
         Label titulo_1 = new Label("Seleccione un paciente y fecha de la cita");
         Label fecha = new Label("Fecha(dd/mm/yyyy): ");
-        tf_fecha = new TextField("");
+        tf_fecha = new DatePicker();
         HBox conte1 = new HBox();
-        confirmar = new Button("Confirmar");
+        agregar = new Button("Confirmar");
         Label hora = new Label("Hora(hh:mm): ");
-        tf_hora = new TextField("");
-        conte1.getChildren().addAll(fecha, tf_fecha, hora, tf_hora, confirmar);
+        tf_hora = new ComboBox();
+        llenarComboBoxHora();
+        tf_hora.setPromptText("Horas Disponibles");
+        tf_hora.setEditable(true);
+        
+        conte1.getChildren().addAll(fecha, tf_fecha, hora, tf_hora, agregar);
         llenarContenedor();
         contenedora.getChildren().addAll(titulo_1, conte1, this.mensaje, sc, sepa, conteImagen);
         contenedora.setAlignment(Pos.CENTER);
 
         tf_nombre.setMinWidth(Settings.SCENE_WIDTH - 80);
         
-        
     }
 
+    private void llenarComboBoxHora(){
+        tf_hora.getItems().addAll("09:00","09:15","09:30","09:45","10:00","10:15","10:30","10:45","11:00","11:15","11:30","11:45",
+                "12:00","12:15","12:30","12:45","13:00","13:15","13:30","13:45","14:00","14:15","14:30","14:45");
+        /*int hora = 9;
+        for(int i=0,j=0; hora<17; i++,j+=5){
+            tf_hora.getItems().add(hora+":"+i+j);
+            if(i==1){ i++; j=0; }
+            if(i==4){ i=0; j=0; }
+        }*/
+    }
     public void llenarContenedor() {
         grid = new GridPane();
         grid.setPadding(new Insets(10,10,10,10));
@@ -194,53 +205,19 @@ public class Cita {
         grid.add(new Label("Hora"), 2, 0);
         grid.add(new Label("Cedula"), 3, 0);
         grid.add(new Label("Nombre"), 4, 0);
+        grid.add(new Label("Duracion"), 5, 0);
         //grid.add(new Button("Confirmar"), 5, 0);
         filas=0;
         
-        Label cedula = new Label("Cedula: ");
-        Label contCedula = new Label("");
-        HBox conte1 = new HBox();
-        conte1.getChildren().addAll(cedula, contCedula);
-        Label nombre = new Label("Nombre: ");
-        Label contNombre = new Label("");
-        HBox conte2 = new HBox();
-        conte2.getChildren().addAll(nombre, contNombre);
-        Label apellido = new Label("Apellido");
-        Label contApellido = new Label("");
-        HBox conte3 = new HBox();
-        conte3.getChildren().addAll(apellido, contApellido);
-        Label direccion = new Label("Direccion: ");
-        Label contDireccion = new Label("");
-        HBox conte4 = new HBox();
-        conte4.getChildren().addAll(direccion, contDireccion);
-        Label fechadenacimiento = new Label("Fecha de nacimiento: ");
-        Label contFechadenacimiento = new Label("");
-        HBox conte5 = new HBox();
-        conte5.getChildren().addAll(fechadenacimiento, contFechadenacimiento);
-        Label estadocivil = new Label("Estado civil: ");
-        Label contEstadocivil = new Label("");
-        HBox conte6 = new HBox();
-        conte6.getChildren().addAll(estadocivil, contEstadocivil);
-        Label sexo = new Label("Sexo: ");
-        Label contSexo = new Label("");
-        HBox conte7 = new HBox();
-        conte7.getChildren().addAll(sexo, contSexo);
-        Label email = new Label("Email: ");
-        Label contEmail = new Label("");
-        HBox conte8 = new HBox();
-        conte8.getChildren().addAll(email, contEmail);
-        datos.getChildren().addAll(conte1, conte2, conte3, conte4, conte5, conte6, conte7, conte8);
-        datos.setAlignment(Pos.CENTER);
-        datos.setSpacing(100);
         sc.setContent(grid);
         sc.setMinWidth(Settings.SCENE_WIDTH / 2);
-        VBox contenedora2 = new VBox();
+        //VBox conteImagen = new VBox();
         Label textcita = new Label("Proxima Cita ");
         Label textdia = new Label("Dia: ");
         Label texthora = new Label("Hora: ");
         Label textpaciente = new Label("Paciente: ");
-        contenedora2.getChildren().addAll(textcita, textdia, texthora, textpaciente);
-        conteImagen.getChildren().addAll(contenedora2);
+        conteImagen.getChildren().addAll(textcita, textdia, texthora, textpaciente);
+        //conteImagen.getChildren().addAll(contenedora2);
         conteImagen.setAlignment(Pos.CENTER);
         
         
@@ -300,9 +277,9 @@ public class Cita {
 
             @Override
             public void handle(ActionEvent t) {
-            rootPane.getChildren().clear();
-            rootPane.setTop(temp_1);
-            rootPane.setCenter(contenedora);
+                rootPane.getChildren().clear();
+                rootPane.setTop(temp_1);
+                rootPane.setCenter(contenedora);
             }
         });
         citaActual.setOnAction(new EventHandler<ActionEvent>() {
@@ -338,20 +315,39 @@ public class Cita {
             contenedora3.getChildren().addAll(contenedora2, new Separator(),exa,realizada);
             }
         });
-        confirmar.setOnAction(new EventHandler<ActionEvent>(){
+        agregar.setOnAction(new EventHandler<ActionEvent>(){
             
             @Override
-            public void handle(ActionEvent t) {
-                if(!"".equals(tf_fecha.getText()) && !"".equals(tf_hora.getText())){
-                    filas++;
-                    grid.add(new Label("1. "), 0, filas);
-                    grid.add(new Label(tf_fecha.getText()), 1, filas);
-                    grid.add(new Label(tf_fecha.getText()), 2, filas);
-                    grid.add(new TextField(""), 3, filas);
-                    grid.add(new TextField(""), 4, filas);
-                    grid.add(new Button("Confirmar"), 5, filas);
-                    grid.add(new Button("Eliminar"), 6, filas);
+            public void handle(ActionEvent t) throws NullPointerException{
+                try{
+                    if(!(fechaElegida.toString().isEmpty()) && tf_fecha.getValue() != null && 
+                            !(tf_hora.getValue().toString().isEmpty()) && tf_hora.getValue() != null){
+                        filas++;
+                        grid.add(new Label("1. "), 0, filas);
+                        grid.add(new Label(fechaElegida.toString()), 1, filas);
+                        grid.add(new Label(tf_hora.getValue().toString()), 2, filas);
+                        grid.add(new TextField(""), 3, filas);
+                        grid.add(new TextField(""), 4, filas);
+                        grid.add(new TextField(""), 5, filas);
+                        grid.add(new Button("Confirmar"), 6, filas);
+                        grid.add(new Button("Eliminar"), 7, filas);
+
+                        tf_hora.getItems().remove(tf_hora.getValue());
+                        tf_hora.setValue(null);
+                        tf_fecha.setValue(null);
+
+                    }
+                }catch(NullPointerException e){
+                    
                 }
+            }
+            
+        });
+        tf_fecha.setOnAction(new EventHandler<ActionEvent>(){
+
+            @Override
+            public void handle(ActionEvent event) {
+                fechaElegida = tf_fecha.getValue();
             }
             
         });
