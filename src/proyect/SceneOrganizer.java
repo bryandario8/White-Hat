@@ -13,6 +13,9 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -32,8 +35,11 @@ public class SceneOrganizer {
     Inventario inventario;
     Proveedores proveedores;
     Usuarios usuarios;
+    //ImageView fondo;
 
+    
     public SceneOrganizer(Stage stage) {
+        
         menuInicio = new MenuInicio();
         cita = new Cita();
         login = new Login();
@@ -42,7 +48,14 @@ public class SceneOrganizer {
         proveedores = new Proveedores();
         usuarios = new Usuarios(stage);
         login.setState(Boolean.TRUE);
+        
+        /*fondo = new ImageView();
+        fondo.setImage(new Image("Img/fondo.jpg"));
+        fondo.setFitWidth(Settings.SCENE_WIDTH);
+        fondo.setFitHeight(Settings.SCENE_HEIGHT);*/
+        
         scene = new Scene(login.getRootPane(), Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);
+        
         this.setupTimeline();
     }
 

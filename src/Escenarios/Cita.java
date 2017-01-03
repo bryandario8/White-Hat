@@ -72,14 +72,24 @@ public class Cita {
     Button realizada;   //* pendiente
     Button agregar;
     int filas;
+    ImageView fondo;
 
     public Cita() {
         rootPane = new BorderPane();
+        
+        fondo = new ImageView();
+        fondo.setImage(new Image("Img/fondo.jpg"));
+        fondo.setFitWidth(Settings.SCENE_WIDTH + 20);
+        fondo.setFitHeight(Settings.SCENE_HEIGHT + 20);
+        rootPane.getChildren().add(fondo);
+        
         lista = new VBox();
         crearCita();
         menuCitas();
         citaactual();
         metOnClick();
+        
+        
 
     }
 

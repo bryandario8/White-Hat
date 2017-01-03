@@ -56,6 +56,8 @@ public class Inventario {
     Button agregarImagen;
     Button saveee;
     HBox temp1;
+    ImageView fondo;
+    
 
     public Inventario(Stage stage) {
         rootPane = new BorderPane();
@@ -79,6 +81,12 @@ public class Inventario {
         rootPane.setTop(temp_1);
         // rootPane.setCenter(mensaje);
 
+        fondo = new ImageView();
+        fondo.setImage(new Image("Img/fondo.jpg"));
+        fondo.setFitWidth(Settings.SCENE_WIDTH + 20);
+        fondo.setFitHeight(Settings.SCENE_HEIGHT + 20);
+        rootPane.getChildren().add(fondo);
+        
         HBox contenedora = new HBox();
         pane = new Pane();
         nuevoSuministro();
@@ -88,6 +96,7 @@ public class Inventario {
         contenedora.getChildren().addAll(sc, sepa, conteImagen);
         contenedora.setAlignment(Pos.CENTER);
         rootPane.setCenter(contenedora);
+        
         tf_nombre.setMinWidth(Settings.SCENE_WIDTH - 110);
         metOnClick();
     }

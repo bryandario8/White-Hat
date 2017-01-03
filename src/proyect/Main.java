@@ -25,8 +25,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         organizer = new SceneOrganizer(primaryStage);
         primaryStage.setScene(organizer.getScene());
-        primaryStage.setTitle("Clinica Odontologica");
+        primaryStage.setTitle("Consultorio Odontológico");
        // primaryStage.getIcons().add(new Image("file:shark-icon-png-4.png"));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

@@ -38,7 +38,7 @@ public class MenuInicio {
         this.personas = new Button("Buscar Persona");
         this.cita = new Button("Cita");
         this.inventario = new Button("Inventario");
-        this.proveedores=new Button("proveedores");
+        this.proveedores=new Button("Proveedores");
         usuarios=new Button("Usuarios");
         this.botones1 = new HBox();
         this.botones1.getChildren().addAll(this.personas, this.cita, this.inventario,this.proveedores,usuarios);

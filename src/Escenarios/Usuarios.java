@@ -58,9 +58,17 @@ public class Usuarios {
     HBox temp1;
     Button edit;
     Button delete;
+    ImageView fondo;
 
     public Usuarios(Stage stage) {
         rootPane = new BorderPane();
+        
+        fondo = new ImageView();
+        fondo.setImage(new Image("Img/fondo.jpg"));
+        fondo.setFitWidth(Settings.SCENE_WIDTH + 20);
+        fondo.setFitHeight(Settings.SCENE_HEIGHT + 20);
+        rootPane.getChildren().add(fondo);
+        
         lista = new VBox();
         hbox_search = new HBox();
         VBox temp_1 = new VBox();

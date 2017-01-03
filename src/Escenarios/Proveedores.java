@@ -56,6 +56,7 @@ public class Proveedores {
     HBox temp1;
     Button edit;
     Button delete;
+    ImageView fondo;
 
     public Proveedores() {
         rootPane = new BorderPane();
@@ -71,6 +72,12 @@ public class Proveedores {
         search = new Button("", iVButton);
         tf_nombre = new TextField();
 
+        fondo = new ImageView();
+        fondo.setImage(new Image("Img/fondo.jpg"));
+        fondo.setFitWidth(Settings.SCENE_WIDTH + 20);
+        fondo.setFitHeight(Settings.SCENE_HEIGHT + 20);
+        rootPane.getChildren().add(fondo);
+        
         mensaje = new Label();
         hbox_search.getChildren().addAll(search, tf_nombre, add, back);
         temp_1.getChildren().addAll(hbox_search, new Separator());
