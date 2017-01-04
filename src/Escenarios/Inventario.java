@@ -61,6 +61,13 @@ public class Inventario {
 
     public Inventario(Stage stage) {
         rootPane = new BorderPane();
+        
+        fondo = new ImageView();
+        fondo.setImage(new Image("Img/fondo.jpg"));
+        fondo.setFitWidth(Settings.SCENE_WIDTH + 20);
+        fondo.setFitHeight(Settings.SCENE_HEIGHT + 20);
+        rootPane.getChildren().add(fondo);
+        
         lista = new VBox();
         hbox_search = new HBox();
         VBox temp_1 = new VBox();
@@ -81,11 +88,7 @@ public class Inventario {
         rootPane.setTop(temp_1);
         // rootPane.setCenter(mensaje);
 
-        fondo = new ImageView();
-        fondo.setImage(new Image("Img/fondo.jpg"));
-        fondo.setFitWidth(Settings.SCENE_WIDTH + 20);
-        fondo.setFitHeight(Settings.SCENE_HEIGHT + 20);
-        rootPane.getChildren().add(fondo);
+        
         
         HBox contenedora = new HBox();
         pane = new Pane();

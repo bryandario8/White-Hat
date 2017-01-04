@@ -5,10 +5,13 @@
  */
 package Escenarios;
 
+import Constantes.Settings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
@@ -32,9 +35,17 @@ public class MenuInicio {
     Boolean paneusuarios=false;
     HBox botones1;
     Boolean exit = false;
+    ImageView fondo;
 
     public MenuInicio() {
         this.rootPane = new StackPane();
+        
+        fondo = new ImageView();
+        fondo.setImage(new Image("Img/fondo.jpg"));
+        fondo.setFitWidth(Settings.SCENE_WIDTH + 20);
+        fondo.setFitHeight(Settings.SCENE_HEIGHT + 20);
+        rootPane.getChildren().add(fondo);
+        
         this.personas = new Button("Buscar Persona");
         this.cita = new Button("Cita");
         this.inventario = new Button("Inventario");

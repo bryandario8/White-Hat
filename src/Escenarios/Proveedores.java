@@ -60,6 +60,13 @@ public class Proveedores {
 
     public Proveedores() {
         rootPane = new BorderPane();
+        
+        fondo = new ImageView();
+        fondo.setImage(new Image("Img/fondo.jpg"));
+        fondo.setFitWidth(Settings.SCENE_WIDTH + 20);
+        fondo.setFitHeight(Settings.SCENE_HEIGHT + 20);
+        rootPane.getChildren().add(fondo);
+        
         lista = new VBox();
         hbox_search = new HBox();
         VBox temp_1 = new VBox();
@@ -72,11 +79,7 @@ public class Proveedores {
         search = new Button("", iVButton);
         tf_nombre = new TextField();
 
-        fondo = new ImageView();
-        fondo.setImage(new Image("Img/fondo.jpg"));
-        fondo.setFitWidth(Settings.SCENE_WIDTH + 20);
-        fondo.setFitHeight(Settings.SCENE_HEIGHT + 20);
-        rootPane.getChildren().add(fondo);
+        
         
         mensaje = new Label();
         hbox_search.getChildren().addAll(search, tf_nombre, add, back);
