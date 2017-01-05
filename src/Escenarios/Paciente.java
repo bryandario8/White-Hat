@@ -33,7 +33,7 @@ import javafx.stage.Stage;
  *
  * @author Flores
  */
-public class SearchPerson {
+public class Paciente {
 
     BorderPane rootPane;
     VBox lista;
@@ -64,7 +64,7 @@ public class SearchPerson {
     Button delete;
     ImageView fondo;
 
-    public SearchPerson(Stage stage) {
+    public Paciente(Stage stage) {
         rootPane = new BorderPane();
         
         fondo = new ImageView();

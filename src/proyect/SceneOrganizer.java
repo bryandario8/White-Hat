@@ -30,7 +30,7 @@ public class SceneOrganizer {
     Timeline timeline;
     MenuInicio menuInicio;
     Login login;
-    SearchPerson searchperson;
+    Paciente searchperson;
     Cita cita;
     Inventario inventario;
     Proveedores proveedores;
@@ -43,7 +43,7 @@ public class SceneOrganizer {
         menuInicio = new MenuInicio();
         cita = new Cita();
         login = new Login();
-        searchperson = new SearchPerson(stage);
+        searchperson = new Paciente(stage);
         inventario = new Inventario(stage);
         proveedores = new Proveedores();
         usuarios = new Usuarios(stage);
