@@ -30,7 +30,7 @@ public class SceneOrganizer {
     Timeline timeline;
     MenuInicio menuInicio;
     Login login;
-    Paciente searchperson;
+    Paciente paciente;
     Cita cita;
     Inventario inventario;
     Proveedores proveedores;
@@ -43,7 +43,7 @@ public class SceneOrganizer {
         menuInicio = new MenuInicio();
         cita = new Cita();
         login = new Login();
-        searchperson = new Paciente(stage);
+        paciente = new Paciente(stage);
         inventario = new Inventario(stage);
         proveedores = new Proveedores();
         usuarios = new Usuarios(stage);
@@ -84,7 +84,7 @@ public class SceneOrganizer {
                 if (menuInicio.getPanepersonas()) {
                     menuInicio.setState(Boolean.FALSE);
                     menuInicio.setPanepersonas(Boolean.FALSE);
-                    scene.setRoot(searchperson.getRootPane());
+                    scene.setRoot(paciente.getRootPane());
                 }
                 if (menuInicio.getPanecita()) {
                     menuInicio.setState(Boolean.FALSE);
@@ -116,8 +116,8 @@ public class SceneOrganizer {
                     System.exit(0);
                 }
             }
-            if (!searchperson.getState()) {
-                searchperson.setState(true);
+            if (!paciente.getState()) {
+                paciente.setState(true);
                 menuInicio.setState(Boolean.TRUE);
                 scene.setRoot(menuInicio.getRootPane());
             }

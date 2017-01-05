@@ -118,7 +118,7 @@ public class Paciente {
         this.state = state;
     }
 
-    public void nuevoPaciente() {
+    private void nuevoPaciente() {
         Label cedula = new Label("Cedula: ");
         TextField tf_cedula = new TextField("");
         HBox conte1 = new HBox();
@@ -162,7 +162,7 @@ public class Paciente {
         temp1.setSpacing(20);
     }
 
-    public void llenarContenedor() {
+    private void llenarContenedor() {
         edit = new Button("Edit");
         delete = new Button("Delete");
         HBox temp2=new HBox();
@@ -213,7 +213,7 @@ public class Paciente {
         conteImagen.setAlignment(Pos.CENTER);
     }
 
-    public void metOnClick() {
+    private void metOnClick() {
         add.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override

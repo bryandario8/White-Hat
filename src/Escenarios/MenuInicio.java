@@ -46,8 +46,8 @@ public class MenuInicio {
         fondo.setFitHeight(Settings.SCENE_HEIGHT + 20);
         rootPane.getChildren().add(fondo);
         
-        this.personas = new Button("Buscar Persona");
-        this.cita = new Button("Cita");
+        this.personas = new Button("Pacientes");
+        this.cita = new Button(" Cita ");
         this.inventario = new Button("Inventario");
         this.proveedores=new Button("Proveedores");
         usuarios=new Button("Usuarios");
@@ -60,7 +60,7 @@ public class MenuInicio {
         setupButton();
     }
 
-    public void setupButton() {
+    private void setupButton() {
         personas.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
